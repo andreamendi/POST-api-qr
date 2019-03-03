@@ -1,0 +1,68 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<!-- <link rel="import" href="bower_components/iron-ajax/iron-ajax.html"> -->
+
+<dom-module id="redde-qr-create">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    
+    <iron-ajax
+    id="qrAjax"
+    url="http://api.qrserver.com/v1/create-qr-code/"
+    params = '{"data":"snippet"}'
+    on-response="handleResponse"
+    handle-as="json"
+    content-type="application/json"
+    method="POST"
+    ></iron-ajax>
+
+
+  </template>
+
+  <script>
+
+    /*
+     * `redde-qr-create`
+     * This component create a qrCode.
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+
+
+    class ReddeQrCreate extends Polymer.Element {
+      static get is() { return 'redde-qr-create'; }
+      static get properties() {
+        return {
+          data: {
+            type: String,
+            value: 'holaaaa'
+          }
+        };
+      }
+      connectedCallback(){
+        super.connectedCallback();
+        //?data=hola!&size=100x100
+
+        let bod = {
+          data: 'hola',
+          size: '100x100'
+        }
+
+        this.$.qrAjax.body = bod;
+        console.log(this.$.qrAjax);
+        this.$.qrAjax.generateRequest();
+        
+      }
+      handleResponse(e){
+        console.log(e);
+      }
+    }
+
+    window.customElements.define(ReddeQrCreate.is, ReddeQrCreate);
+  </script>
+</dom-module>

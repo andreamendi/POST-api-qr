@@ -1,0 +1,36 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="redde-qr-create">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]!</h2>
+  </template>
+
+  <script>
+    /**
+     * `redde-qr-create`
+     * This component read a qrCode.
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class ReddeQrCreate extends Polymer.Element {
+      static get is() { return 'redde-qr-create'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'redde-qr-create'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(ReddeQrCreate.is, ReddeQrCreate);
+  </script>
+</dom-module>
